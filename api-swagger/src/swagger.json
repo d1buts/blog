@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API User",
+    "description": "Documentation about API User",
+    "license": {
+      "name": "Facebook Group",
+      "url": "https://www.facebook.com/groups/607163139705114/"
+    }
+  },
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "operationId": "listUsers",
+        "tags": ["/users"],
+        "description": "List of users",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of user to update",
+            "required": "true",
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "User Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Nick of user"
+          }
+        }
+      },
+
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "Http code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Only information"
+          }
+        }
+      }
+    }
+  }
+}
